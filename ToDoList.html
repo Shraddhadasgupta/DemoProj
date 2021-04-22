@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+</html>
+<head>
+    <body>
+
+        <h1>Tasks For The Day</h1>
+        <p id="date"></p>
+        <input type='text' id='user_input' />
+        <button onclick="append()">Add Task</button>
+
+        <ol id="list_item">
+        </ol>
+        
+<script>
+
+    var d = new Date();
+    document.getElementById("date").innerHTML = d;
+
+ function append() {
+
+    var parent = document.createElement("Li");
+    var text = document.getElementById("user_input").value; 
+    var child=document.createTextNode(text);
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "checkbox");
+    x.setAttribute("value", "ON");
+     parent.appendChild(x);
+    parent.appendChild(child);
+    document.getElementById("list_item").appendChild(parent);
+}
+
+</script>
+    </body>
+</head>
+</html>
