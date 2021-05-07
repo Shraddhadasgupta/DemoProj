@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+     ol{
+         user-select: none;
+     }
+     ol li.checked {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+    </style>
+
+    <body>
+        <h1>Tasks For The Day</h1>
+        <p id="date"></p>
+        
+        <input type='text' id='user_input'/>
+        <button id="addTask" onclick="append()">Add Task</button>
+        <element class="close"></element>
+        <element class="check"></element>
+        <ol id="lists"></ol>
+
+        <div class="select">
+            <select name="todos" class="filter-todo">
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="uncompleted">Uncompleted</option>
+            </select>
+    
+<script>
+
+    var d = new Date();
+    document.getElementById("date").innerHTML = d;
+
+ function append() {
+    var p = document.createElement("Li");
+    var storeId = generateId();
+    
+    p.id = storeId;
+    var text = document.getElementById("user_input").value;
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "checkbox");
+    x.addEventListener("click", taskComplete, false)
+    //x.onclick = taskComplete(p)   
+    
+     p.appendChild(x);
+     
+     x.name=storeId;
+
+    var child=document.createTextNode(text); 
+    p.appendChild(child);
+    if(text === ''){
+        alert('Text is Required!');
+    }else{
+        document.getElementById("lists").appendChild(p);
+    }
+    user_input.value = "";
+    
+    
+     var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  p.appendChild(span); 
+
+  var close = document.getElementsByClassName("close");
+ var i;
+ for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+   var div=this.parentElement;
+    div.style.display = "none";
+ }
+ } 
+}
+function generateId(){
+  return Math.random().toString(16).substr(2, 10);
+}
+function taskComplete(){
+    let elem = document.getElementById(this.name);
+   
+        if (this.checked == true){
+         
+    elem.style = "text-decoration: line-through";
+  } 
+  else {
+    elem.style = "";  
+  }
+      
+    //console.log("hiii");
+    
+ //document.getElementById("p").innerHTML = storeId.strike();
+}
+
+
+
+
+//  x.className="check";
+//  var c=document.getElementsByClassName("check");
+//  x.addEventListener('click', c, true);
+//  function c(){
+//      if(x.checked){
+//          console.log("Done");
+//      }
+//  }
+// }
+
+
+  
+// function myFunction() {
+//   var result = str.strike();
+//   document.getElementById("user_input").innerHTML = result;
+//   var val=document.getElementById("user_input").value;
+//   document.write("<p>Strike: " + val.strike() + "</p>");
+
+// }
+
+
+</script>
+    </body>
+</head>
+</html>
